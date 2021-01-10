@@ -18,14 +18,17 @@ def startSearch():
     links = soup.findAll('a', {'class': 'thumb'})
 
     for item in links:
-        img_obj = requests.get(item.attrs['href'])
-        print("getting", item.attrs['href'])
-        title = item.attrs['href'].split('/')[-1]
         try:
-            img = Image.open(BytesIO(img_obj.content))
-            img.save('./' + dir_name + '/' + title, img.format)
+            img_obj = requests.get(item.attrs['href'])
+            print("getting", item.attrs['href'])
+            title = item.attrs['href'].split('/')[-1]
+            try:
+                img = Image.open(BytesIO(img_obj.content))
+                img.save('./' + dir_name + '/' + title, img.format)
+            except:
+                print('could not save image')
         except:
-            print('could not save image')
+            print("could not request Image")
     startSearch()
 
 startSearch()
