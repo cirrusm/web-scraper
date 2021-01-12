@@ -12,10 +12,13 @@ results = soup.find(f"ol", {'id' : "b_results"})
 links = results.findAll('li', {'class': 'b_algo'})
 
 for item in links:
+    ## set the item text equal to the text inside of the a tag
     item_text = item.find('a').text
+    ## set the item href equal to the href attribute inside of the a tag
     item_href = item.find('a').attrs["href"]
 
     if item_text and item_href:
+        ## Print both
         print(item_text)
         print(item_href)
         print("Parent:", item.find('a').parent.parent.find('p').text)
