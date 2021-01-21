@@ -37,5 +37,6 @@ def startSearch():
             print("could not request Image")
     startSearch()
 
+## Initialize the search by calling the function
 startSearch()
 
